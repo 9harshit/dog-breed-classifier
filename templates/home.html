@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% block content %}
+<style type="text/css">
+tr, button
+{
+  padding: 15px;
+	color: #ffffff;
+}
+h4{
+	background: #000000;
+}
+button:hover {
+  background: #62b778;
+}
+button 
+{
+	border: 2px solid #000000;
+	background: #62cf78;
+}
+input
+{ background: #282828;
+	color: #ffffff;
+}
+table
+{
+	padding: 250px;
+	position: relative;
+}
+.files input {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 120px 0px 85px 35%;
+    text-align: center !important;
+    margin: 0;
+    width: 100% !important;
+    background: #404040;
+}
+.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+ }
+.file{ position:relative
+}
+.files:after {  pointer-events: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 50px;
+    right: 0;
+    height: 56px;
+    content: "";
+    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+    display: block;
+    margin: 0 auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.color input{ background-color:#f1f1f1;}
+
+.modal {
+  display: block;
+  color: #62cf78;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #161616;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #62cf78;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #62b778;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input[type='file'] {
+  color: transparent;
+}
+</style>
+
+
+
+	<form method = "POST" enctype="multipart/form-data">
+<table align="center">
+   <tr>
+				<th>
+        <div class="form-group files">
+                <input type="file" class="form-control" name="image" accept="image/*" required>
+        </div>
+      </th>
+			</tr>
+			<tr align="center">
+				<th >
+					  <button type="submit" >Upload Your Dog's Image and Predict Breed</button>
+				</th>
+			</tr>
+	
+	</table>
+	</form>
+
+
+    {% if result != None %}        <!-- Modal content -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+                <h3 align="center">{{result.replace("_", " ").upper()}} <h3>
+        </div>
+      </div>
+    {% endif %}
+<script>
+  // Code By Webdevtrick ( https://webdevtrick.com )
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+	{% endblock %}
+
+
+
+
+
+
+
